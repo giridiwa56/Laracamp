@@ -19,10 +19,11 @@ Route::get('/', function () {
 })->name('welcome');
 
 //Backup Routes
-Route::get('checkout/{camp:slug}', function () {
-return view('checkout');
-})->name('checkout');
+// Route::get('checkout/{camp:slug}', function () {
+// return view('checkout');
+// })->name('checkout');
 
+Route::get('checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
 
 Route::get('success_checkout', function () {
     return view('success_checkout');
