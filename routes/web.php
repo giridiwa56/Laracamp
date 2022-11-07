@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\User\CheckoutController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,11 +24,16 @@ Route::get('/', function () {
 // return view('checkout');
 // })->name('checkout');
 
-Route::get('checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
+//Backup Routes
+// Route::get('checkout/{camp:slug}',[CheckoutController::class, 'create'])->name('checkout');
 
-Route::get('success_checkout', function () {
-    return view('success_checkout');
-})->name('success_checkout');
+Route::get('checkout/success',[CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('checkout/{camp:slug}',[CheckoutController::class, 'create'])->name('checkout.create');
+Route::post('checkout/{camp}',[CheckoutController::class, 'store'])->name('checkout.store');
+
+// Route::get('success_checkout', function () {
+//     return view('success_checkout');
+// })->name('success_checkout');
 
 
 //socialite Routes
