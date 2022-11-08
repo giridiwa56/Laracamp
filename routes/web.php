@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,7 @@ Route::get('/', function () {
 //Backup Routes
 // Route::get('checkout/{camp:slug}',[CheckoutController::class, 'create'])->name('checkout');
 
-Route::get('checkout/success',[CheckoutController::class, 'success'])->name('checkout.success');
-Route::get('checkout/{camp:slug}',[CheckoutController::class, 'create'])->name('checkout.create');
-Route::post('checkout/{camp}',[CheckoutController::class, 'store'])->name('checkout.store');
+
 
 // Route::get('success_checkout', function () {
 //     return view('success_checkout');
@@ -40,8 +39,18 @@ Route::post('checkout/{camp}',[CheckoutController::class, 'store'])->name('check
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
 Route::get('auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('auth.google.callback');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function (){
+    //checkout routes
+    Route::get('checkout/success',[CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('checkout/{camp:slug}',[CheckoutController::class, 'create'])->name('checkout.create');
+    Route::post('checkout/{camp}',[CheckoutController::class, 'store'])->name('checkout.store');
+    
+    //User Dashboard
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
+});
 require __DIR__.'/auth.php';
