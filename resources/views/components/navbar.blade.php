@@ -28,7 +28,7 @@
                         <img src="{{ Auth::user()->avatar }}" class='user-photo' alt="" />
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: auto">
                             <li>
-                                <a href="#" class="dropdown-item"><i class="bi bi-speedometer"></i>
+                                <a href="{{route('dashboard')}}" class="dropdown-item"><i class="bi bi-speedometer"></i>
 My Dashboard</a>
                             </li>
                             <li>
