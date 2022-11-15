@@ -13,3 +13,8 @@ Laracamp Adalah sebuah Web Bootcamp yang saya buat menggunakan Laravel 9. Ide Da
 2. PHP (8.0 + ) 
 3. XAMPP
 
+# Fitur Yang ada Di Dalam Web ini :
+1.Mailtrap
+2.Midtrans
+
+
