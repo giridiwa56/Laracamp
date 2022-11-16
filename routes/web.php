@@ -54,13 +54,13 @@ Route::middleware(['auth'])->group(function (){
     // Home Dashboard
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     // User Dashboard
-    Route::prefix('user/dashboard')->namespace('User')->name('user.')->group(function(){
+    Route::prefix('user/dashboard')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){
         Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
     });
 
 
     //Admin Dashboard
-    Route::prefix('admin/dashboard')->namespace('admin.')->group(function(){
+    Route::prefix('admin/dashboard')->namespace('admin.')->middleware('ensureUserRole:admin')->group(function(){
         Route::get('/', [AdminDashboard::class, 'index'])->name('dashboard');
     });
 
