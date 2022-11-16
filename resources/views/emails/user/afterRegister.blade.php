@@ -12,5 +12,5 @@ Login Here
 @endcomponent
 
 Terimakasih,<br>
-Admin Laracamps
+Admin {{ config('app.name') }}
 @endcomponent
