@@ -14,8 +14,10 @@ Laracamp Adalah sebuah Web Bootcamp yang saya buat menggunakan Laravel 9. Ide Da
 3. XAMPP
 
 # Fitur Yang ada Di Dalam Web ini :
-1.Mailtrap
+1.Mailtrap (https://mailtrap.io/)
 
-2.Midtrans
+2.Midtrans (https://midtrans.com/id)
+
+3. Whatsapp(https://api.whatsapp.com)
 
 
