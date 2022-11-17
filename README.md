@@ -18,6 +18,6 @@ Laracamp Adalah sebuah Web Bootcamp yang saya buat menggunakan Laravel 9. Ide Da
 
 2.Midtrans (https://midtrans.com/id)
 
-3. Whatsapp(https://api.whatsapp.com)
+3. Whatsapp (https://api.whatsapp.com)
 
 
