@@ -19,7 +19,7 @@ class EnsureUserRole
     {           
         $user = Auth::user();
         if(($role == 'admin' && !$user->is_admin) || ($role == 'user' && $user->is_admin)){
-            abort(403, 'Access Forbidden');
+            abort(403, 'Access Denied');
         }
         return $next($request);
     }
