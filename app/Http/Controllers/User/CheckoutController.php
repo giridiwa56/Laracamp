@@ -21,7 +21,7 @@ class CheckoutController extends Controller
     */
     public function __construct()
     {
-        Midtrans\Config::$serverKey = env ('MIDTRANS_SERVER_KEY');
+        Midtrans\Config::$serverKey = env('MIDTRANS_SERVERKEY');
         Midtrans\Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
         Midtrans\Config::$isSanitized = env('MIDTRANS_IS_SANITIZED');
         Midtrans\Config::$is3ds = env('MIDTRANS_IS_3DS');
@@ -70,6 +70,8 @@ class CheckoutController extends Controller
        $user->email = $data['email'];
        $user->name = $data['name'];
        $user->occupation = $data['occupation'];
+       $user->phone = $data['phone'];
+       $user->address = $data['address'];
        $user->save();
 
        //create checkout
@@ -155,17 +157,17 @@ class CheckoutController extends Controller
         $userData = [
             "first_name" => $checkout->User->name,
             "last_name" => "",
-            "address" => $chekcout->User->address,
+            "address" => $checkout->User->address,
             "city" => "",
             "postal_code" => "",
-            "phone" => $chcekout->User->phone,
+            "phone" => $checkout->User->phone,
             "country_code"  => "IDN",
         ];
 
         $customer_details = [
             "first_name" => $checkout->User->name,
             "last_name" => "",
-            "email" => $chekcout->User->email,
+            "email" => $checkout->User->email,
             "phone" => $checkout->User->phone,
             "biling_address" => $userData,
             "shipping_address" => $userData,
@@ -179,7 +181,7 @@ class CheckoutController extends Controller
 
         try {
            //payment gateway transaction
-           $paymentUrl  = \Midtrans\Snap::createTransaction($params)->reditrect_url;
+           $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
            $checkout->midtrans_url  = $paymentUrl;
            $checkout->save();
 
@@ -190,7 +192,7 @@ class CheckoutController extends Controller
     }
 
     public function midtranscallback(Request $request){
-        $notif = new Midtrans\Notification();
+        $notif =$request->method() === 'POST' ? new Midtrans\Notification():Midtrans\Transaction::status($request->order_id);
 
         $transaction_status = $notif->transaction_status;
         $fraud = $notif->fraud_status;
